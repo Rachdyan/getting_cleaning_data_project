@@ -63,7 +63,7 @@ library(dplyr)
   mean_std_activity_cols <- gsub("Freq", "Frequency",  mean_std_activity_cols)
   mean_std_activity_cols <- gsub("mean", "_Mean",  mean_std_activity_cols)
   mean_std_activity_cols <- gsub("std", "_StandardDeviation",  mean_std_activity_cols)
-  mean_std_data_cols <- gsub("BodyBody", "Body",  mean_std_data_cols)
+  mean_std_activity_cols <- gsub("BodyBody", "Body",  mean_std_data_cols)
 
   names(mean_std_activity) <- mean_std_activity_cols
 
