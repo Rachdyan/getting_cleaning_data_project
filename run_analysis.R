@@ -41,8 +41,9 @@ library(dplyr)
 
 #Extract the mean and standard deviation index for each measurement
   col_names <- colnames(final_data)
-  mean_std_index <- which(grepl("mean", col_names) | grepl("std", col_names))
-
+  col_names
+  mean_std_index <- which(grepl("mean\\(\\)", col_names) | grepl("std", col_names))
+  
 #Subset the mean and standard deviation from the merged dataset
   mean_std_data <- final_data %>% select(subject_id, activity_id, mean_std_index)
 
@@ -55,6 +56,7 @@ library(dplyr)
 #Tidy the column names by removing symbol, removing typo, and rename with descriptive name
   mean_std_activity_cols <- colnames(mean_std_activity)
   mean_std_activity_cols <- gsub("[-|(|)]", "", mean_std_activity_cols)
+  
   mean_std_activity_cols <- gsub("^t", "timeDomain_", mean_std_activity_cols)
   mean_std_activity_cols <- gsub("^f", "frequencyDomain_", mean_std_activity_cols)
   mean_std_activity_cols <- gsub("Acc", "Accelerometer",  mean_std_activity_cols)
@@ -63,7 +65,7 @@ library(dplyr)
   mean_std_activity_cols <- gsub("Freq", "Frequency",  mean_std_activity_cols)
   mean_std_activity_cols <- gsub("mean", "_Mean",  mean_std_activity_cols)
   mean_std_activity_cols <- gsub("std", "_StandardDeviation",  mean_std_activity_cols)
-  mean_std_activity_cols <- gsub("BodyBody", "Body",  mean_std_data_cols)
+  mean_std_activity_cols <- gsub("BodyBody", "Body",  mean_std_activity_cols)
 
   names(mean_std_activity) <- mean_std_activity_cols
 
